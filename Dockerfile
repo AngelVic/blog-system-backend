@@ -9,5 +9,6 @@ RUN ./mvnw dependency:go-offline
 
 RUN ./mvnw clean package -DskipTests
 
-EXPOSE 8080
-ENTRYPOINT ["java","-jar","target/blog-system-1.0.0.jar"] 
+ENV PORT=8080
+EXPOSE ${PORT}
+CMD ["sh", "-c", "java -jar target/blog-system-1.0.0.jar --server.port=${PORT}"] 
